@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
 
-function App() {
+const initialClicks = 0;
+const App = () => {
+  const [countClicks, setCountClicks] = React.useState(initialClicks);
+  function onClick() {
+    setCountClicks(countClicks + 1);
+    console.log();
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <SpanCount value={countClicks} />
+      <ButtonCount onClick={onClick} />
     </div>
   );
-}
+};
+
+const SpanCount = ({ value }) => {
+  //const [countClicks, setCountClicks] = React.useState(initialClicks);
+  return <span className="value">{value}</span>;
+};
+
+const ButtonCount = ({ onClick }) => {
+  return (
+    <button id="inc" onClick={onClick}>
+      {"Incrementar"}
+    </button>
+  );
+};
 
 export default App;
